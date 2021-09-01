@@ -1,4 +1,8 @@
-import React, { FormEvent, MouseEvent, useState } from "react";
+import React, {
+  FormEvent,
+  MouseEvent,
+  useState
+} from "react";
 import IGist from "../interfaces/IGist";
 import { fetchUserGist } from "../services/ApiService";
 import CardLoader from "./common/CardLoader";
