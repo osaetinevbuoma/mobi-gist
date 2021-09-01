@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import toastr from "toastr";
+import IError from "../interfaces/IError";
 import IGist from "../interfaces/IGist";
 import { fetchGistForks } from "../services/ApiService";
 import { sliceGistArray, sortGistForkUser } from "../services/GistService";
 import { gistBaseUrl } from "../utils/api";
 import SpinnerLoader from "./common/SpinnerLoader";
+import "toastr/build/toastr.css";
 
 interface IGistFork {
   gistId: string;
@@ -21,8 +24,13 @@ const GistFork = (props: IGistFork): JSX.Element => {
 
   const fetchForks = async (id: string): Promise<void> => {
     setIsLoading(true);
-    const results = await fetchGistForks(id);
-    setForks(results);
+    const results: IGist[] | IError = await fetchGistForks(id);
+    if ((results as IError).error) {
+      toastr.error((results as IError).error);
+      return;
+    }
+
+    setForks(results as IGist[]);
     setIsLoading(false);
   }
 

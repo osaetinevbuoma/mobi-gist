@@ -1,46 +1,54 @@
-# Getting Started with Create React App
+# Mobi Gist
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This application demonstrates listing a GitHub user's gists by providing the user's GitHub username. The functional requirements are as follows:
 
-In the project directory, you can run:
+* **Search**: When a user enters a username, it should be able to get a full list of public Gists by that user.
+* **Filetype**: Convert the filetypes of the files in the gist into a tag/badge, (e.g, if the returned gist has list of files containing python and JavaScript files, the gist should have the respective tags/badges). *Extra: the badges are color-coded.*
+* **Fork**: Username/Avatar of the last 3 users who forked it with avatar linking to the fork.
 
-### `yarn start`
+## Set Up
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Install the dependencies:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+  yarn install
+  # OR
+  npm install
+```
 
-### `yarn test`
+## Run application
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the application, run the following commands in the terminal
 
-### `yarn build`
+```
+  yarn start
+  # OR
+  npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Run tests
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Run tests using the following commands in terminal
+```
+  yarn test
+  # OR
+  npm test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies Used
 
-### `yarn eject`
+* React + TypeScript
+* Bootstrap
+* Lorem Picsum (for random images)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Note
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**GitHub has an API rate limit of 5000 requests per hour for unauthenticated requests to the REST endpoints.**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Screenshots
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Screenshot 1](screenshots/screenshot_1.png)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![SCreenshot 2](screenshots/screenshot_2.png)

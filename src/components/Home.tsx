@@ -3,12 +3,15 @@ import React, {
   MouseEvent,
   useState
 } from "react";
+import toastr from "toastr";
 import IGist from "../interfaces/IGist";
 import { fetchUserGist } from "../services/ApiService";
 import CardLoader from "./common/CardLoader";
 import GistCard from "./GistCard";
 import Layout from "./layout/Layout";
 import SpinnerLoader from "./common/SpinnerLoader";
+import IError from "../interfaces/IError";
+import "toastr/build/toastr.css";
 
 const Home = (): JSX.Element => {
   const [username, setUsername] = useState<string>('');
@@ -23,8 +26,13 @@ const Home = (): JSX.Element => {
     if (username === '') return;
 
     setIsLoading(true);
-    const gists: IGist[] = await fetchUserGist(username);
-    setGists(gists);
+    const gists: IGist[] | IError = await fetchUserGist(username);
+    if ((gists as IError).error) {
+      toastr.error((gists as IError).error);
+      return;
+    }
+    
+    setGists(gists as IGist[]);
     setPage(page + 1);
     setIsLoading(false);
   }
@@ -33,13 +41,23 @@ const Home = (): JSX.Element => {
     e.preventDefault();
 
     if (username === '') return;
+    console.log(page);
 
     setIsLoadingMore(true);
-    const newGists: IGist[] = await fetchUserGist(username, page);
-    if (gists.length > 0) {
+    const newGists: IGist[] | IError = await fetchUserGist(username, page);
+    if ((newGists as IError).error) {
+      toastr.error((newGists as IError).error);
+      return;
+    }
+
+    console.log(newGists);
+
+    if ((newGists as IGist[]).length > 0) {
       const g = [ ...gists ];
-      g.concat(newGists);
+      g.push(...newGists as IGist[]);
       setGists(g);
+      console.log(g.length);
+      console.log(g);
 
       setPage(page + 1);
     }
