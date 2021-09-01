@@ -38,7 +38,7 @@ const Home = (): JSX.Element => {
     const newGists: IGist[] = await fetchUserGist(username, page);
     if (gists.length > 0) {
       const g = [ ...gists ];
-      g.push(...newGists);
+      g.concat(newGists);
       setGists(g);
 
       setPage(page + 1);
